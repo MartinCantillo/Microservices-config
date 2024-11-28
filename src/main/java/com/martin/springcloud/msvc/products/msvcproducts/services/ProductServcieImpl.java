@@ -1,12 +1,15 @@
 package com.martin.springcloud.msvc.products.msvcproducts.services;
 
-import com.martin.springcloud.msvc.products.msvcproducts.entities.Product;
-import com.martin.springcloud.msvc.products.msvcproducts.repositories.ProductRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import com.martin.springcloud.msvc.products.msvcproducts.entities.Product;
+import com.martin.springcloud.msvc.products.msvcproducts.repositories.ProductRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 
 @Service
@@ -28,6 +31,7 @@ public class ProductServcieImpl implements ProductService {
     @Transactional(readOnly = true)
     @Override
     public Optional<Product> findById(Long id) {
-        return Optional.empty();
+        
+        return this.productRepository.findById(id);
     }
 }
